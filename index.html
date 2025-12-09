@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ishimwe Karekezi Guy Gael Portfolio</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Inter, sans-serif;
+            background: #f6f6f6;
+            color: #333;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark {
+            background: #121212;
+            color: white;
+        }
+
+        header {
+            background: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: background 0.3s ease;
+        }
+
+        body.dark header {
+            background: #1f1f1f;
+        }
+
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        body.dark nav a {
+            color: white;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .toggle-btn {
+            padding: 8px 14px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            background: #333;
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 120px 20px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .section {
+            padding: 60px 40px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            line-height: 1.7;
+        }
+
+        body.dark .card {
+            background: #1f1f1f;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        body.dark .project-card {
+            background: #1f1f1f;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            margin-top: 40px;
+            color: #666;
+        }
+
+        body.dark footer {
+            background: #1f1f1f;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Ishimwe Karekezi Guy Gael</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="toggle-btn" onclick="toggleDark()">Dark mode</button>
+</header>
+
+<section id="home" class="hero">
+    <h1>Ishimwe Karekezi Guy Gael</h1>
+    <p>AI student at Carnegie Mellon University Africa.  
+       I enjoy building simple and smart solutions using data, code and clean analytics.</p>
+
+    <a class="btn" href="CV.pdf" download>Download CV</a>
+</section>
+
+<section id="about" class="section">
+    <h2 class="section-title">About Me</h2>
+    <div class="card">
+        <p>
+            My name is Karekezi Guy Gael. I studied Electronics and Telecommunications Engineering at the University of Rwanda. 
+            During my studies, I worked on projects that helped me understand how systems work in real life, such as building 
+            a smart energy meter that lets households track electricity use in real time.
+        </p>
+        <br>
+        <p>
+            I am now studying for a Master of Science in Engineering Artificial Intelligence at Carnegie Mellon University Africa. 
+            My work focuses on machine learning, data analysis and building systems that use data to solve problems. I enjoy working 
+            with clean code, simple ideas and models that bring clear results. I like teamwork and learning from others because 
+            it helps me grow and build better solutions.
+        </p>
+        <br>
+        <p>
+            My goal is to create intelligent and practical tools that make life easier. I am interested in data driven systems, 
+            machine learning, IoT and projects that have a real impact. I always enjoy new ideas and exploring better ways to 
+            understand and use data.
+        </p>
+    </div>
+</section>
+
+
+<section id="projects" class="section">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">Some work I have built with care</p>
+
+    <div class="project-grid">
+
+        <div class="project-card">
+            <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=1200');"></div>
+
+            <h3>Mobile Money Mimick System</h3>
+            <p>
+                A simple mobile money system written in C. It helps test how money moves from one user to another. 
+                You can send money, check balance and simulate real cases. It is good for learning how a basic financial system works.
+            </p>
+            <a class="btn" href="https://github.com/GuyGael-Karekezi/C-codes" target="_blank">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?w=1200');"></div>
+
+            <h3>Global Demographic Clustering</h3>
+            <p>
+                A machine learning project where I group countries by how their population changes. 
+                I use clustering and PCA to find patterns and understand how nations move from one stage of growth to another.
+            </p>
+            <a class="btn" href="https://github.com/GuyGael-Karekezi/ML" target="_blank">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+            <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1581093806997-124204d924ad?w=1200');"></div>
+
+            <h3>Smart Energy Meter</h3>
+            <p>
+                IoT system that reads electricity use in real time. It helps users make smart energy decisions and reduce cost. 
+                You can read the full project in the PDF.
+            </p>
+            <a class="btn" href="Final_year_thesis_jonathan_gael_merci_revised_y4ete.pdf" target="_blank">Open Project PDF</a>
+        </div>
+
+    </div>
+</section>
+
+<section id="skills" class="section">
+    <h2 class="section-title">Skills</h2>
+    <div class="card">
+        <p>
+            Python  
+            Java  
+            Machine Learning  
+            Data Analysis  
+            IoT Systems  
+            MATLAB  
+            Android  
+            Problem Solving  
+        </p>
+    </div>
+</section>
+
+<section id="contact" class="section">
+    <h2 class="section-title">Contact</h2>
+    <div class="card">
+        <p>Email: iguygael@andrew.cmu.edu</p>
+        <p>Phone: +250 784 595 484</p>
+        <p>LinkedIn: www.linkedin.com/in/guy-gael-891895367</p>
+    </div>
+</section>
+
+<footer>
+    <p>Made with care by Karekezi Guy Gael</p>
+</footer>
+
+<script>
+function toggleDark() {
+    document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>
