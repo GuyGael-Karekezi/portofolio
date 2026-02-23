@@ -174,6 +174,32 @@
         .btn.secondary { background: rgba(0,0,0,0.05); color: inherit; margin-left: 10px; }
         body.dark .btn.secondary { background: rgba(255,255,255,0.1); }
 
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 2px;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--accent);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        body.dark .tag {
+            background: rgba(125, 211, 252, 0.08);
+            border-color: rgba(125, 211, 252, 0.18);
+            color: #bae6fd;
+        }
+
         /* ---------- SKILLS ---------- */
         .skills-grid {
             display: flex;
@@ -256,6 +282,11 @@
             <div class="card-text-content">
                 <h3>AI-Powered CV Evaluation</h3>
                 <p>An Explainable AI (XAI) system that parses CVs, classifies professional domains, and provides personalized career feedback using NLP.</p>
+                <div class="project-tags">
+                    <span class="tag">XAI</span>
+                    <span class="tag">NLP</span>
+                    <span class="tag">Streamlit</span>
+                </div>
                 <a class="btn" href="https://cv-ai-evaluator-acvep9rjxne6aswkfqx3ir.streamlit.app/" target="_blank">Live Demo</a>
                 <a class="btn secondary" href="https://github.com/GuyGael-Karekezi/cv-ai-evaluator" target="_blank">GitHub</a>
             </div>
@@ -265,20 +296,35 @@
             <div class="project-img" style="background-image:url('https://www.ecmag.com/images/default-source/articles/adobestock_927087863.tmb-art-detail.jpg?Culture=en&sfvrsn=cb61c94e_1');"></div>
             <h3>Smart Energy Meter</h3>
             <p>IoT solution for real-time electricity monitoring. Featured as my engineering thesis at the University of Rwanda.</p>
+            <div class="project-tags">
+                <span class="tag">IoT</span>
+                <span class="tag">Embedded</span>
+                <span class="tag">Energy</span>
+            </div>
             <a class="btn secondary" href="https://guygael-karekezi.github.io/portofolio/Final_year_thesis_jonathan_gael_merci_revised_y4ete.pdf">Read Paper</a>
         </div>
         
 
         <div class="project-card">
             <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1508385082359-f38ae991e8f2');"></div>
-            <h3>Demographic Clustering</h3>
-            <p>Unsupervised ML project using PCA and K-Means to identify global population trends.</p>
-            <a class="btn secondary" href="https://github.com/GuyGael-Karekezi/ML" target="_blank">GitHub</a>
+            <h3>Portfolio Website</h3>
+            <p>Personal portfolio site showcasing AI/ML, IoT, and data projects with direct links to public repositories and demos.</p>
+            <div class="project-tags">
+                <span class="tag">Web</span>
+                <span class="tag">Portfolio</span>
+                <span class="tag">GitHub Pages</span>
+            </div>
+            <a class="btn secondary" href="https://github.com/GuyGael-Karekezi/portofolio" target="_blank">GitHub</a>
         </div>
         <div class="project-card">
             <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=1200');"></div>
             <h3>MoMo Mimick System</h3>
             <p>A financial simulation engine written in C. Handles transactions, balance queries, and user state management to model real-world money movement.</p>
+            <div class="project-tags">
+                <span class="tag">C</span>
+                <span class="tag">Systems</span>
+                <span class="tag">FinTech</span>
+            </div>
             <a class="btn secondary" href="https://github.com/GuyGael-Karekezi/C-codes" target="_blank">View on GitHub</a>
         </div>
 
@@ -286,6 +332,11 @@
             <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200');"></div>
             <h3>MBD Multimodal Misinformation</h3>
             <p>Mobile Big Data project focused on misinformation analysis and detection workflows, including modeling and evaluation assets.</p>
+            <div class="project-tags">
+                <span class="tag">NLP</span>
+                <span class="tag">Multimodal</span>
+                <span class="tag">Classification</span>
+            </div>
             <a class="btn secondary" href="https://github.com/GuyGael-Karekezi/MBD_Misinformation" target="_blank">GitHub</a>
         </div>
 
@@ -293,6 +344,11 @@
             <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200');"></div>
             <h3>MBD Projects</h3>
             <p>Course projects for Mobile Big Data Analytics and Management, including mobile phone activity analysis and social media extremism detection.</p>
+            <div class="project-tags">
+                <span class="tag">Mobile Big Data</span>
+                <span class="tag">EDA</span>
+                <span class="tag">ML</span>
+            </div>
             <a class="btn secondary" href="https://github.com/GuyGael-Karekezi/MBD-Projects" target="_blank">GitHub</a>
         </div>
 
@@ -300,6 +356,11 @@
             <div class="project-img" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200');"></div>
             <h3>DIAML Projects (Fall)</h3>
             <p>Data, Inference, and Applied Machine Learning projects covering classification, regression, PCA, and time-series forecasting.</p>
+            <div class="project-tags">
+                <span class="tag">Time Series</span>
+                <span class="tag">PCA</span>
+                <span class="tag">ML</span>
+            </div>
             <a class="btn secondary" href="https://github.com/GuyGael-Karekezi/DIAML-Projects/tree/portfolio-safe" target="_blank">GitHub (Portfolio Safe)</a>
         </div>
     </div>
