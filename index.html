@@ -620,7 +620,7 @@
             <div class="game-stats">
                 <span class="stat-chip">Score: <span id="game-score">0</span></span>
                 <span class="stat-chip">Best: <span id="game-best">0</span></span>
-                <span class="stat-chip">Goal: 12</span>
+                <span class="stat-chip">Goal: 1</span>
             </div>
         </div>
         <div class="game-area">
@@ -759,7 +759,7 @@
             gameScoreEl.textContent = score;
             placeFood();
 
-            if (score >= 12) {
+            if (score >= 1) {
                 stopGame("You have won! Now read Guy Gael's portfolio.");
                 return;
             }
@@ -775,7 +775,7 @@
         running = true;
         paused = false;
         gameStart.textContent = "Running...";
-        gameMessage.textContent = "Snake is moving. Collect 12 points to win.";
+        gameMessage.textContent = "Snake is moving. Collect 1 point to win.";
         gameLoop = setInterval(tick, 110);
     }
 
