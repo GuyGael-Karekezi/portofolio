@@ -404,6 +404,7 @@
         }
 
         .game-area {
+            position: relative;
             width: 100%;
             border-radius: 18px;
             overflow: hidden;
@@ -445,6 +446,59 @@
             font-size: 0.95rem;
             opacity: 0.9;
             font-weight: 600;
+        }
+
+        .win-overlay {
+            position: absolute;
+            inset: 14px;
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(6, 14, 34, 0.72);
+            z-index: 4;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .win-overlay.active {
+            display: flex;
+        }
+
+        .win-overlay h3 {
+            margin: 0;
+            font-size: clamp(1.6rem, 3.5vw, 2.7rem);
+            color: #f8fafc;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+            letter-spacing: 0.02em;
+        }
+
+        .win-overlay p {
+            margin: 8px 0 0;
+            color: #bae6fd;
+            font-weight: 700;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -60px;
+            font-size: 1.6rem;
+            animation: floatUp 3.6s linear infinite;
+            opacity: 0.95;
+        }
+
+        .balloon.b1 { left: 10%; animation-delay: 0s; }
+        .balloon.b2 { left: 24%; animation-delay: 0.7s; }
+        .balloon.b3 { left: 38%; animation-delay: 1.4s; }
+        .balloon.b4 { left: 52%; animation-delay: 0.3s; }
+        .balloon.b5 { left: 66%; animation-delay: 1s; }
+        .balloon.b6 { left: 82%; animation-delay: 1.8s; }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.9); opacity: 0; }
+            12% { opacity: 1; }
+            100% { transform: translateY(-460px) scale(1.1); opacity: 0; }
         }
 
 
@@ -625,6 +679,18 @@
         </div>
         <div class="game-area">
             <canvas id="snake-canvas" width="720" height="480" aria-label="Snake game canvas"></canvas>
+            <div id="win-overlay" class="win-overlay" aria-hidden="true">
+                <div>
+                    <h3>You have won!</h3>
+                    <p>Now read Guy Gael's portfolio.</p>
+                </div>
+                <span class="balloon b1">🎈</span>
+                <span class="balloon b2">🎉</span>
+                <span class="balloon b3">🎈</span>
+                <span class="balloon b4">✨</span>
+                <span class="balloon b5">🎉</span>
+                <span class="balloon b6">🎈</span>
+            </div>
         </div>
         <div class="game-controls">
             <a class="btn" href="#" id="game-start">Start Snake</a>
@@ -668,6 +734,7 @@
     const gameMessage = document.getElementById("game-message");
     const gameStart = document.getElementById("game-start");
     const gameRestart = document.getElementById("game-restart");
+    const winOverlay = document.getElementById("win-overlay");
 
     const COLS = 24;
     const ROWS = 16;
@@ -723,6 +790,8 @@
         render();
         gameMessage.textContent = "Ready? Catch the data points.";
         gameStart.textContent = "Start Snake";
+        winOverlay.classList.remove("active");
+        winOverlay.setAttribute("aria-hidden", "true");
     }
 
     function stopGame(message) {
@@ -735,6 +804,10 @@
             best = score;
             localStorage.setItem("gg_snake_best", String(best));
             gameBestEl.textContent = best;
+        }
+        if (message.includes("won")) {
+            winOverlay.classList.add("active");
+            winOverlay.setAttribute("aria-hidden", "false");
         }
     }
 
