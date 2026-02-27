@@ -495,13 +495,13 @@
     <h2 class="section-title">About Me</h2>
     <div class="project-card">
         <p>
-            My name is <strong>Ishimwe Karekezi Guy Gael</strong>. I laid my professional foundation at the University of Rwanda, where I studied <strong>Electronics and Telecommunications Engineering</strong>. During this time, I focused on bridging the gap between theoretical concepts and real-world applications. One of my cornerstone projects was developing a <strong>Smart Energy Meter</strong>, an IoT-based solution designed to empower households by allowing them to track their electricity consumption in real time.
+            I am <strong>Ishimwe Karekezi Guy Gael</strong>. I studied <strong>Electronics and Telecommunications Engineering</strong> at the University of Rwanda, where I built a Smart Energy Meter project.
         </p>
         <p>
-            Currently, I am advancing my expertise at <strong>Carnegie Mellon University Africa</strong>, pursuing a <strong>Master of Science in Engineering Artificial Intelligence</strong>. My academic and research efforts are centered on machine learning, data analysis, and the development of intelligent systems that leverage data to solve complex problems. I am a strong advocate for "clean code" and believe that the most effective solutions are often built on simple, elegant ideas and models that deliver transparent, high-impact results.
+            Now I am doing a <strong>Master of Science in Engineering Artificial Intelligence</strong> at <strong>Carnegie Mellon University Africa</strong>. I focus on machine learning, data science, and building simple tools that solve real problems.
         </p>
         <p>
-            Driven by a passion for innovation, my ultimate goal is to build practical, intelligent tools that simplify lives. I am deeply interested in the intersection of <strong>data-driven systems, machine learning, and IoT</strong>. I thrive in collaborative environments, valuing teamwork as a vital catalyst for personal growth and the creation of superior technical solutions. I am always eager to explore new ideas and discover more sophisticated ways to interpret and utilize data for the greater good.
+            I enjoy teamwork, clean code, and using data to create practical solutions that help people.
         </p>
     </div>
 </section>
@@ -653,8 +653,8 @@
         const body = document.body;
         const btn = document.getElementById("mode-toggle");
         body.classList.toggle("dark");
-        
-        if(body.classList.contains("dark")) {
+
+        if (body.classList.contains("dark")) {
             btn.innerText = "Light Mode";
         } else {
             btn.innerText = "Dark Mode";
@@ -722,6 +722,7 @@
         placeFood();
         render();
         gameMessage.textContent = "Ready? Catch the data points.";
+        gameStart.textContent = "Start Snake";
     }
 
     function stopGame(message) {
@@ -812,31 +813,6 @@
     });
 
     resetGame();
-    });
-
-    gameStart.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (playing) return;
-        score = 0;
-        timeLeft = 20;
-        playing = true;
-        gameScoreEl.textContent = score;
-        gameTimeEl.textContent = timeLeft;
-        gameMessage.textContent = "Go!";
-        gameStart.textContent = "Running...";
-        moveDot();
-
-        timer = setInterval(() => {
-            timeLeft -= 1;
-            gameTimeEl.textContent = timeLeft;
-            if (timeLeft <= 0) {
-                endGame();
-            }
-        }, 1000);
-    });
-
-    window.addEventListener("resize", moveDot);
-    moveDot();
 </script>
 
 </body>
