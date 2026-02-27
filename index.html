@@ -145,6 +145,22 @@
             border-color: rgba(255,255,255,0.18);
         }
 
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
@@ -350,6 +366,82 @@
             transform: scale(1.05);
         }
 
+        /* ---------- GAME ---------- */
+        .game-card {
+            background: var(--card-light);
+            border-radius: 24px;
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 28px;
+        }
+
+        body.dark .game-card {
+            background: var(--card-dark);
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        .game-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .stat-chip {
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            background: rgba(37, 99, 235, 0.09);
+            color: var(--accent);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .game-area {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            border-radius: 18px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(125, 211, 252, 0.16), transparent 30%),
+                radial-gradient(circle at 80% 90%, rgba(37, 99, 235, 0.14), transparent 30%),
+                linear-gradient(135deg, rgba(2, 132, 199, 0.09), rgba(37, 99, 235, 0.05));
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .game-dot {
+            position: absolute;
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            color: white;
+            background: linear-gradient(145deg, #0ea5e9, #2563eb);
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+            transition: transform 0.15s ease;
+        }
+
+        .game-dot:hover { transform: scale(1.08); }
+        .game-dot:active { transform: scale(0.95); }
+
+        .game-message {
+            margin: 14px 0 0;
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
         /* ---------- FOOTER ---------- */
         footer {
             text-align: center;
@@ -371,6 +463,7 @@
     <nav>
         <a href="#about">About</a>
         <a href="#projects">Work</a>
+        <a href="#play">Play</a>
         <a href="#contact">Contact</a>
         <button class="toggle-btn" onclick="toggleDark()" id="mode-toggle">Light Mode</button>
     </nav>
@@ -379,9 +472,10 @@
 <section id="home" class="hero">
     <div class="hero-inner">
         <div class="hero-text">
+            <div class="hero-badge">AI + Data Science</div>
             <h1>Ishimwe Karekezi Guy Gael</h1>
             <p>MS in Engineering Artificial Intelligence @ Carnegie Mellon University Africa. 
-               Specializing in Machine Learning, IoT Systems, and Data-Driven Problem Solving.</p>
+               Specializing in Machine Learning, Data Science, and Data-Driven Problem Solving.</p>
             <a class="btn" href="CV.pdf" download>Download CV</a>
             <a class="btn secondary" href="#projects">View My Work</a>
         </div>
@@ -512,6 +606,25 @@
     </div>
 </section>
 
+<section id="play" class="section">
+    <h2 class="section-title">Play: Data Reflex Game</h2>
+    <div class="game-card">
+        <div class="game-header">
+            <p style="margin:0;">Click the moving target as many times as possible in 20 seconds.</p>
+            <div class="game-stats">
+                <span class="stat-chip">Score: <span id="game-score">0</span></span>
+                <span class="stat-chip">Time: <span id="game-time">20</span>s</span>
+                <span class="stat-chip">Best: <span id="game-best">0</span></span>
+            </div>
+        </div>
+        <div class="game-area" id="game-area">
+            <button class="game-dot" id="game-dot" aria-label="Target">AI</button>
+        </div>
+        <a class="btn" href="#" id="game-start">Start Game</a>
+        <p class="game-message" id="game-message">Ready to test your speed?</p>
+    </div>
+</section>
+
 <section id="contact" class="section">
     <h2 class="section-title">Get In Touch</h2>
     <div class="project-card" style="text-align: center;">
@@ -537,6 +650,74 @@
             btn.innerText = "Dark Mode";
         }
     }
+
+    const gameArea = document.getElementById("game-area");
+    const gameDot = document.getElementById("game-dot");
+    const gameScoreEl = document.getElementById("game-score");
+    const gameTimeEl = document.getElementById("game-time");
+    const gameBestEl = document.getElementById("game-best");
+    const gameMessage = document.getElementById("game-message");
+    const gameStart = document.getElementById("game-start");
+
+    let score = 0;
+    let timeLeft = 20;
+    let timer = null;
+    let playing = false;
+    let best = Number(localStorage.getItem("gg_reflex_best") || 0);
+    gameBestEl.textContent = best;
+
+    function moveDot() {
+        const maxX = gameArea.clientWidth - gameDot.offsetWidth;
+        const maxY = gameArea.clientHeight - gameDot.offsetHeight;
+        const x = Math.floor(Math.random() * Math.max(maxX, 1));
+        const y = Math.floor(Math.random() * Math.max(maxY, 1));
+        gameDot.style.left = `${x}px`;
+        gameDot.style.top = `${y}px`;
+    }
+
+    function endGame() {
+        clearInterval(timer);
+        playing = false;
+        gameMessage.textContent = `Game over. You scored ${score}.`;
+        gameStart.textContent = "Play Again";
+        if (score > best) {
+            best = score;
+            localStorage.setItem("gg_reflex_best", String(best));
+            gameBestEl.textContent = best;
+            gameMessage.textContent = `New best score: ${best}!`;
+        }
+    }
+
+    gameDot.addEventListener("click", () => {
+        if (!playing) return;
+        score += 1;
+        gameScoreEl.textContent = score;
+        moveDot();
+    });
+
+    gameStart.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (playing) return;
+        score = 0;
+        timeLeft = 20;
+        playing = true;
+        gameScoreEl.textContent = score;
+        gameTimeEl.textContent = timeLeft;
+        gameMessage.textContent = "Go!";
+        gameStart.textContent = "Running...";
+        moveDot();
+
+        timer = setInterval(() => {
+            timeLeft -= 1;
+            gameTimeEl.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                endGame();
+            }
+        }, 1000);
+    });
+
+    window.addEventListener("resize", moveDot);
+    moveDot();
 </script>
 
 </body>
